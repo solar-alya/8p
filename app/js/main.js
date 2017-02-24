@@ -87,6 +87,8 @@ function init() {
     pageDots: false,
     contain: true,
     prevNextButtons: false,
+    dragThreshold: 10,
+    // groupCells: '100%',
   });
 
   $('.speakers_slider_mini').flickity({
@@ -94,6 +96,9 @@ function init() {
     contain: true,
     pageDots: false,
     prevNextButtons: false,
+    dragThreshold: 10,
+    // draggable: false
+    // groupCells: 1,
   });
 
   // **************
@@ -237,12 +242,12 @@ function init() {
     wPos = $window.scrollTop(),
     wHeight = $window.height(),
     startAnim = wPos + wHeight;
-    $('.on_screen').each(function() {
+    $('.on_screen:not(.animated)').each(function() {
       var $this = $(this),
       offset = $this.data('offset') || 0,
       thisPos = $this.offset().top;
       if ((!$this.hasClass('animated') && startAnim > thisPos + offset)) {
-        $this.addClass('animated');
+        $this.addClass('animated').trigger('onScreen');
       }
     });
   }
@@ -254,7 +259,7 @@ function init() {
   $('body').on('click', '.scroll_to', function(event) {
     var $this = $(this),
     $target = $($this.attr('href')),
-    dist = $target.offset().top - $('.header').innerHeight();
+    dist = $target.offset().top - $('.header').innerHeight() + 1;
     event.preventDefault();
     tm.to(window, 0.55, { scrollTo: dist, ease: Power4.easeInOut });
   });

@@ -1,4 +1,5 @@
 $grid_margin: 20px;
+$grid_margin_bigger: 60px;
 
 .row { @include clearfix; }
 
@@ -12,6 +13,10 @@ $grid_margin: 20px;
   margin-bottom: -$grid_margin;
   width: 100%;
   &>[class*='col_'] { margin-bottom: $grid_margin; }
+  &.margin_bigger {
+    margin-bottom: -$grid_margin_bigger;
+    &>[class*='col_'] { margin-bottom: $grid_margin_bigger; }
+  }
 }
 
 .col_2 { width: calc(100% / 12 * 2 - #{$grid_margin/6});  &:nth-child(6n+0) { margin-right: 0; } }
