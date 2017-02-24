@@ -1,0 +1,97 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html   {
+  font-size: 62.5%;
+  @media screen and (max-width: $mobile) { font-size: 55%; }
+}
+
+ul, ol { list-style-position: inside; }
+img    { max-width: 100% }
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.disabled, [disabled] { pointer-events: none }
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+a { text-decoration: none; color: inherit; }
+
+svg[class^="icon_"], svg[class*=" icon_"], .icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.cd { cursor: default; }
+
+.tc { text-align: center; }
+.tl { text-align: left; }
+.tr { text-align: right; }
+
+.fl { float: left; }
+.fr { float: right; }
+
+.clearfix { @include clearfix }
+
+.no_select { @include no_select }
+
+.dt {
+  width: 100%;
+  display: table;
+}
+
+.dtc {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.ml5 { margin-left: 0.5rem; }
+.mr5 { margin-right: 0.5rem; }
+.mt5 { margin-top: 0.5rem; }
+.mb5:not(:last-child) { margin-bottom: 0.5rem; }
+
+.ml10 { margin-left: 1rem; }
+.mr10 { margin-right: 1rem; }
+.mt10 { margin-top: 1rem; }
+.mb10:not(:last-child) { margin-bottom: 1rem; }
+
+.ml15 { margin-left: 1.5rem; }
+.mr15 { margin-right: 1.5rem; }
+.mt15 { margin-top: 1.5rem; }
+.mb15:not(:last-child) { margin-bottom: 1.5rem; }
+
+.ml20 { margin-left: 2rem; }
+.mr20 { margin-right: 2rem; }
+.mt20 { margin-top: 2rem; }
+.mb20:not(:last-child) { margin-bottom: 2rem; }
+
+.ml30 { margin-left: 3rem; }
+.mr30 { margin-right: 3rem; }
+.mt30 { margin-top: 3rem; }
+.mb30:not(:last-child) { margin-bottom: 3rem; }
+
+.ml40 { margin-left: 4rem; }
+.mr40 { margin-right: 4rem; }
+.mt40 { margin-top: 4rem; }
+.mb40:not(:last-child) { margin-bottom: 4rem; }
+
+.ml50 { margin-left: 5rem; }
+.mr50 { margin-right: 5rem; }
+.mt50 { margin-top: 5rem; }
+.mb50:not(:last-child) { margin-bottom: 5rem; }

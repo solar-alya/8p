@@ -1,0 +1,564 @@
+@import 'vendor/_flickity.scss';
+
+@import 'utility/_vars.scss';
+@import 'utility/_normalize.scss';
+@import 'utility/_base.scss';
+@import 'utility/_grid.scss';
+
+
+@import 'modules/_header.scss';
+@import 'modules/_footer.scss';
+@import 'modules/_speakers.scss';
+
+
+@font-face {
+  font-family: 'PFDinTextCondPro';
+  src: url('/fonts/PFDinTextCondPro-Bold.eot?#iefix') format('embedded-opentype'),  url('/fonts/PFDinTextCondPro-Bold.woff') format('woff'), url('/fonts/PFDinTextCondPro-Bold.ttf')  format('truetype'), url('/fonts/PFDinTextCondPro-Bold.svg#PFDinTextCondPro-Bold') format('svg');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'PFDinTextCondPro';
+  src: url('/fonts/PFDinTextCondPro-Medium.eot?#iefix') format('embedded-opentype'),  url('/fonts/PFDinTextCondPro-Medium.woff') format('woff'), url('/fonts/PFDinTextCondPro-Medium.ttf')  format('truetype'), url('/fonts/PFDinTextCondPro-Medium.svg#PFDinTextCondPro-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'PFDinTextCondPro';
+  src: url('/fonts/PFDinTextCondPro-Regular.eot?#iefix') format('embedded-opentype'),  url('/fonts/PFDinTextCondPro-Regular.woff') format('woff'), url('/fonts/PFDinTextCondPro-Regular.ttf')  format('truetype'), url('/fonts/PFDinTextCondPro-Regular.svg#PFDinTextCondPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@keyframes fade_in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade_up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 5rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade_left {
+  from {
+    opacity: 0;
+    transform: translate3d(5rem, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.fade_up {
+  opacity: 0;
+  &.animated {
+    animation: fade_up 0.6s #{$bezier};
+    animation-fill-mode: both;
+  }
+}
+
+.fade_left {
+  opacity: 0;
+  &.animated {
+    animation: fade_left 0.6s #{$bezier};
+    animation-fill-mode: both;
+  }
+}
+
+::selection { background: $pink_light; color: #fff; }
+
+body {
+  font-family: 'PFDinTextCondPro', sans-serif;
+  font-weight: 400;
+  color: $text;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.wrapper {
+  @include clearfix;
+  max-width: (104.4rem + $wrapper_padding*2);
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 $wrapper_padding;
+  &.smaller { max-width: (88.4rem + $wrapper_padding*2); }
+}
+
+main {
+  padding-top: $button_height;
+}
+
+h1, .h1 {
+  font-size: 6rem;
+  line-height: 7.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  @media screen and (max-width: $tablet) {
+    font-size: 4rem;
+    line-height: 6rem;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+}
+
+
+h2, .h2 {
+  font-size: 4.4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-weight: 400;
+  @media screen and (max-width: $tablet) {
+    font-size: 3rem;
+  }
+  @media screen and (max-width: $mobile) {
+    font-size: 2.2rem;
+  }
+}
+
+h3, .h3 {
+  font-size: 2.4rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  @media screen and (max-width: $mobile) {
+    font-size: 2rem;
+  }
+}
+
+.big {
+  font-size: 2.4rem;
+  line-height: 3.6rem;
+  @media screen and (max-width: $mobile) {
+    font-size: 1.8rem;
+    line-height: 2.8rem;
+  }
+}
+
+section {
+  padding: #{$section_padding} 0;
+  &.padding_smaller { padding: #{$section_padding - 2rem} 0;; }
+  &.no_padding_bottom { padding-bottom: 0; }
+  @media screen and (max-width: $mobile) { padding: #{$section_padding - 2rem} 0; }
+}
+
+.section_heading {
+  margin-bottom: #{$section_padding};
+  @media screen and (max-width: $mobile) { margin-bottom: #{$section_padding - 2rem}; }
+}
+
+ul.with_checks {
+  li {
+    position: relative;
+    padding-left: 1.7rem;
+    display: block;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0.3rem;
+      left: -0.5rem;
+      width: 2rem;
+      height: 2rem;
+      background-image: url(/img/li_check.svg);
+      background-position: center;
+      background-size: 1rem;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.on_screen {
+  &:nth-child(2) { animation-delay: 0.1s }
+  &:nth-child(3) { animation-delay: 0.2s }
+  &:nth-child(4) { animation-delay: 0.3s }
+  &:nth-child(5) { animation-delay: 0.4s }
+  &:nth-child(6) { animation-delay: 0.5s }
+}
+
+
+// ***************************
+// Socials links (not fixed)
+// ***************************
+
+.link_social {
+  width: 3.4rem;
+  height: 3.4rem;
+  line-height: 3.4rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  color: #8d8d8d;
+  display: inline-block;
+  transition: all .4s;
+  position: relative;
+  font-size: 1.8rem;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .4s $bezier;
+    transform: scale(1.3);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  &:not(:last-child) { margin-right: 1.5rem; }
+  &.bg_hover_facebook:after { background-color: $facebook; }
+  &.bg_hover_twitter:after { background-color: $twitter; }
+  &.bg_hover_google:after { background-color: $google; }
+  &.bg_hover_linkedin:after { background-color: $linkedin; }
+  &.bg_hover_google .icon { margin-top: -0.8rem; }
+  &:hover {
+    color: #fff;
+    &:after { transform: none; opacity: 1; }
+  }
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -0.9rem 0 0 -0.9rem;
+    z-index: 2;
+  }
+}
+
+// ***************************
+// Colors and bacground colors
+// ***************************
+
+.bg_grey       { background-color: #f1f1f1; }
+.bg_facebook   { background-color: $facebook; }
+.bg_twitter    { background-color: $twitter; }
+.bg_instagram  { background-color: $instagram; }
+.bg_youtube    { background-color: $youtube; }
+
+// *******
+// Buttons
+// *******
+
+.button {
+  height: $button_height;
+  line-height: $button_height;
+  padding: 0 3rem;
+  text-align: center;
+  border: 0;
+  color: #fff;
+  box-shadow: none;
+  background-image: linear-gradient(to right, #dd4e7d, #cf5ed6), linear-gradient(#000000, #000000);
+  white-space: nowrap;
+  display: inline-block;
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: $shadow;
+  transition: all 0.3s;
+  &:hover {
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.55);
+  }
+  &.outline {
+    background-image: none;
+    border: 0.4rem solid #fff;
+    line-height: ($button_height - 0.8rem);
+    &:hover {
+      background-color: #fff;
+      color: $pink;
+    }
+    &.blue {
+      border-color: $blue;
+      color: $text;
+      font-weight: 700;
+    }
+  }
+  .icon {
+    font-size: 3rem;
+    float: left;
+    margin: 0.6rem 0.6rem 0 0;
+    color: #000;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 0 2rem;
+  }
+}
+
+// *********
+// Dropdowns
+// *********
+
+.dropdown_handler {
+  position: relative;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  background-color: #fff;
+  line-height: 1.4;
+  text-align: left;
+  font-size: 1.6rem;
+  width: 26rem;
+  box-shadow: $shadow;
+  color: $text;
+  &.align_right {
+    left: auto;
+    right: 0;
+  }
+  &.align_left {
+    left: 0;
+    right: auto;
+  }
+  .dropdown_item, a {
+    display: block;
+    padding: 0.5rem 1rem;
+    transition: all .1s;
+    &:hover, &.active {
+      background-color: $blue;
+      color: #fff;
+    }
+  }
+}
+
+// Fixed socials
+
+.fixed_socials {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%) translateZ(0) scale(1) translateX(-100%);
+  left: 0;
+  z-index: 5;
+  transition: all 0.6s 0.2s #{$bezier};
+  &.animated { transform: translateY(-50%) translateZ(0) scale(1); }
+  @media screen and (max-width: 1200px) { display: none; }
+}
+
+.fixed_social {
+  $size: 3.6rem;
+  $hover_size: 0.4rem;
+  $fz: 2.2rem;
+  display: block;
+  width: ($size + $hover_size);
+  height: $size;
+  text-align: center;
+  line-height: $size;
+  color: #fff;
+  font-size: $fz;
+  position: relative;
+  transform: translateX(-$hover_size);
+  transition: all .3s ease;
+  &:hover { transform: none; }
+  .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -(#{$fz/2}) 0 0 -(#{($fz - $hover_size)/2});
+  }
+}
+
+// Секция с видео
+
+.section_hero {
+  position: relative;
+  background-color: #04a7a3;
+  padding: 3rem 0 15rem;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  overflow: hidden;
+  // opacity: 0;
+  // animation: fade_in 2s;
+  // animation-fill-mode: both;
+  &:after {
+    content: '';
+    position: absolute;
+    left: -5rem;
+    bottom: -2rem;
+    height: 10rem;
+    width: calc(100% + 10rem);
+    pointer-events: none;
+    background: url(/img/wave_white.svg);
+    background-position: center bottom;
+    background-size: 100% 10rem;
+  }
+  .h1 { margin-bottom: 4rem; font-weight: 700; }
+  .wrapper { position: relative; z-index: 2; }
+  @media screen and (max-width: $mobile) {
+    background-image: url(/img/section_hero_poster.jpg);
+  }
+}
+
+
+// На IE не пашут фильтры для видосов, потому оставляем просто изображение
+.ie .section_video { display: none; }
+
+.section_video {
+  position: relative;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  &.video_loaded {
+    animation: fade_in 1s;
+    animation-fill-mode: both;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    mix-blend-mode: multiply;
+    background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#108ad1, #108ad1);
+  }
+  video {
+    filter: grayscale(1) contrast(87%);
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  @media screen and (max-width: $mobile) { display: none; }
+}
+
+.section_hero_logo {
+  width: 36rem;
+  height: 36rem;
+  line-height: 36rem;
+  text-align: center;
+  position: relative;
+  background: url(/img/section_hero_logo.svg);
+  background-position: center;
+  background-size: 106%;
+  &.animated { animation-delay: 0.4s; }
+  img { width: 23rem; }
+  @media screen and (max-width: $tablet) {
+    width: 25rem;
+    height: 25rem;
+    line-height: 25rem;
+    img { width: 17rem; }
+  }
+}
+
+.section_hero_content {
+  padding-left: 24rem;
+  margin-top: -11rem;
+  position: relative;
+  z-index: 4;
+  &.animated { animation-delay: 0.8s; }
+  @media screen and (max-width: $desc) {
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+}
+
+.section_hero_date {
+  margin-bottom: 0.5rem;
+}
+
+.section_hero_buttons {
+  .button:not(:last-child) { margin-right: 4rem; }
+  @media screen and (max-width: $mobile) {
+    .button {
+      float: left;
+      clear: both;
+      min-width: 19rem;
+      &:not(:first-child) { margin-top: 2rem; }
+    }
+  }
+}
+
+
+// **********
+// Count down
+// **********
+
+.count_down {
+  text-align: center;
+}
+
+.count_down_el {
+  display: inline-block;
+  background-color: #fff;
+  padding: 1rem 0;
+  width: 9.5rem;
+  &:not(:last-child) { margin-right: 1rem; }
+  * {
+    line-height: 1;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  @media screen and (max-width: $tablet) {
+    width: 6.5rem;
+  }
+}
+
+// ***********
+// Cards
+// ***********
+
+
+.card {
+  background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#000000, #000000);
+  padding: 0.4rem;
+}
+
+.card_head {
+  display: table;
+  width: 100%;
+  color: #fff;
+  height: 8rem;
+  padding: 0 3.5rem;
+  .dtc { vertical-align: middle; }
+}
+
+.card_body {
+  background-color: #fff;
+  padding: 1.5rem 1.8rem;
+}
+
+.card_body_heading {
+  font-weight: 500;
+  text-transform: uppercase;
+  &:not(:first-child) { margin-top: 2rem; }
+}
+
+// ***************
+// Icons with text
+// ***************
+
+.icons_with_text_row {
+  .el {
+    position: relative;
+    padding-left: 5.5rem;
+  }
+  .icon {
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    font-size: 4.6rem;
+    color: $blue;
+  }
+}
