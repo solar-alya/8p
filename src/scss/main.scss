@@ -188,6 +188,7 @@ ul.with_checks {
   &:nth-child(4) { animation-delay: 0.3s }
   &:nth-child(5) { animation-delay: 0.4s }
   &:nth-child(6) { animation-delay: 0.5s }
+  &:nth-child(7) { animation-delay: 0.6s }
 }
 
 
@@ -256,21 +257,26 @@ ul.with_checks {
 .button {
   height: $button_height;
   line-height: $button_height;
+  vertical-align: top;
   padding: 0 3rem;
   text-align: center;
   border: 0;
   color: #fff;
   box-shadow: none;
   background-image: linear-gradient(to right, #dd4e7d, #cf5ed6), linear-gradient(#000000, #000000);
+  background-repeat: repeat-x;
+  background-size: 250px 100%;
+  background-position: 0 0;
   white-space: nowrap;
   display: inline-block;
   font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: 500;
   box-shadow: $shadow;
-  transition: all 0.3s;
+  transition: all 0.4s;
   &:hover {
     box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.55);
+    background-position: -80px 0;
   }
   &.outline {
     background-image: none;

@@ -86,14 +86,13 @@ function init() {
     adaptiveHeight: true,
     pageDots: false,
     contain: true,
-prevNextButtons: false,
+    prevNextButtons: false,
   });
 
   $('.speakers_slider_mini').flickity({
     asNavFor: '.speakers_slider',
     contain: true,
     pageDots: false,
-    cellAlign: 'left',
     prevNextButtons: false,
   });
 
