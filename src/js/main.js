@@ -7,6 +7,7 @@
 
 $(document).ready(function() {
   init();
+  svg4everybody();
 });
 
 function init() {
@@ -17,6 +18,8 @@ function init() {
   $document = $(document),
   $body = $('body'),
   $header = $('.header');
+
+
 
   // If touchscreen
   if (mobileCond) { $body.addClass('mobile'); }
@@ -58,6 +61,17 @@ function init() {
     dragThreshold: 10,
     // draggable: false
     // groupCells: 1,
+  });
+
+  // Простой слайдер со стрелками. (спонсоры)
+
+  $('.slider_simple').flickity({
+    contain: true,
+    pageDots: false,
+    dragThreshold: 10,
+    cellAlign: 'left',
+    arrowShape: 'M0.335,38.395 L38.877,0.166 L42.222,3.346 L5.678,39.985 L42.344,76.623 L38.857,79.803 L0.335,41.574 L0.335,38.395 Z',
+    groupCells: '100%',
   });
 
   // **************
@@ -189,28 +203,6 @@ function init() {
     $handler.removeClass('opened');
   }
 
-  // ***************************************************
-  // Делаем что-то как только элемент появился на экране
-  // ***************************************************
-
-  onScreen();
-
-  function onScreen() {
-    var thisPos, offset,
-    $window = $(window),
-    wPos = $window.scrollTop(),
-    wHeight = $window.height(),
-    startAnim = wPos + wHeight;
-    $('.on_screen:not(.animated)').each(function() {
-      var $this = $(this),
-      offset = $this.data('offset') || 0,
-      thisPos = $this.offset().top;
-      if ((!$this.hasClass('animated') && startAnim > thisPos + offset)) {
-        $this.addClass('animated').trigger('onScreen');
-      }
-    });
-  }
-
   // ****************************************
   // Scroll to. Анимируем к элементу по клику
   // ****************************************
@@ -258,7 +250,7 @@ function init() {
   }
 
   function initializeClock(el) {
-    var clock = document.querySelector(el);
+    var clock = el;
     var endtime = clock.getAttribute('data-end');
     var daysSpan = clock.querySelector('.days');
     var hoursSpan = clock.querySelector('.hours');
@@ -280,8 +272,169 @@ function init() {
     var timeinterval = setInterval(updateClock, 1000);
   }
 
-  initializeClock('.count_down');
+  $('.count_down').each(function() {
+    initializeClock($(this).get(0));
+  });
 
+  // *********************************
+  // Tabs
+  // *********************************
+
+  $('.tab_choose:first-child').each(function() {
+    var $this = $(this),
+    getId = $this.data('tab');
+    $this.addClass('active');
+    $(getId).addClass('active');
+  });
+
+  $body.on('click', '.tab_choose', function() {
+    var $this = $(this),
+    getId = $this.data('tab');
+    $(getId).add($this).addClass('active').siblings().removeClass('active');
+  });
+
+  // ******************************************
+  // Секция Youtube с предпросмотром тамбнейлов
+  // ******************************************
+
+  $body.on('click', '.watch_youtube_thumbs .bg', function() {
+    var $this = $(this),
+    url = $this.attr('data-youtube');
+    $('.watch_youtube_video iframe').attr('src', url);
+  });
+
+  // ******************************************
+  // Dialogs
+  // ******************************************
+
+  var dialog = {
+    init: function($dialog) {
+      $dialog.each(function() {
+        var $this = $(this);
+        if ($this.closest('.dialog_handler').length !== 0) { return; }
+        $this.wrap('<div class="dialog_handler">').after('<div class="dialog_bg || dialog_close">').wrap('<div class="dialog_tcell">');
+      });
+    },
+    open: function($dialog) {
+      var $handler = $dialog.closest('.dialog_handler');
+      tm.set($handler, { display: 'table', autoAlpha: 0 });
+      tm.to($handler, 0.4, { autoAlpha: 1, ease: Power3.easeOut });
+      tm.fromTo($dialog, 0.4, { scale: 0.5, y: 50 }, { scale: 1, y: 0, ease: Power3.easeOut });
+    },
+    openYoutube: function(url) {
+      var $dialog = $('#dialog_youtube');
+      this.open($dialog);
+      $dialog.find('iframe').attr('src', url + '?autoplay=1');
+    },
+    openZoom: function(url) {
+      var $dialog = $('#dialog_gallery');
+      this.open($dialog);
+      $dialog.find('img').attr('src', url);
+    },
+    close: function($handler) {
+      var $dialog = $handler.find('.dialog');
+      tm.to($handler, 0.3, { display: 'none', autoAlpha: 0, ease: Power3.easeIn });
+      tm.to($dialog, 0.3, { scale: 0.5, y: 50, ease: Power3.easeIn });
+      $dialog.trigger('dialogClosed');
+    }
+  };
+
+  // Инициализация
+  dialog.init($('.dialog'));
+
+  // Открытие
+  $body.on('click', '.dialog_open', function(event) {
+    var $this = $(this),
+    $dialog = $($this.attr('data-dialog'));
+    dialog.open($dialog);
+    event.preventDefault();
+  });
+
+  // Открытие ютуб диалога
+  $body.on('click', '.dialog_open_youtube', function(event) {
+    event.preventDefault();
+    dialog.openYoutube($(this).attr('data-youtube'));
+  });
+
+  // Зум картинок
+  $body.on('click', '.image_zoom', function(event) {
+    dialog.openZoom($(this).attr('data-image'));
+  });
+
+  // Закрытие диалога
+  $body.on('click', '.dialog_close', function(event) {
+    dialog.close($(this).closest('.dialog_handler'));
+  });
+
+  // Закрытие ютуб видео
+  $body.on('dialogClosed', '#dialog_youtube', function(event) {
+    $(this).find('iframe').attr('src', '');
+  });
+
+  // *****************************
+  // Slider spinner
+  // *****************************
+
+  $('.slider_spinner').each(function() {
+    var $slide = $(this).find('.slide'),
+    length = $slide.length,
+    tl = new TimelineMax({ repeat: -1 });
+    for (var i = 0; i < length; i += 1) {
+      tl.fromTo($slide[i], 0.3, { scale: 0.2, rotation: 180, autoAlpha: 0, display: 'none' }, { scale: 1, rotation: 0, autoAlpha: 1,  display: 'block' });
+      tl.to($slide[i], 0.3, { scale: 0.2, rotation: -180, autoAlpha: 0,  display: 'none', delay: 4  });
+    }
+  });
+
+    // *****************************
+    // FAQ
+    // *****************************
+
+    // Init
+
+    $('.question_block:first-child').each(function() {
+      var $this = $(this);
+      $this.addClass('active');
+      $('.faq_answers').html($this.find('.answer').html());
+      if ($window.innerWidth() < 768) {
+        $this.find('.answer').show();
+      }
+    });
+
+    $body.on('click', '.question', function() {
+      var $this = $(this),
+      $handler = $this.closest('.faq_handler'),
+      $questionBlock = $this.closest('.question_block'),
+      $answer = $this.next('.answer');
+      $questionBlock.addClass('active').siblings().removeClass('active');
+      if ($window.innerWidth() > 768) {
+        $handler.find('.faq_answers').html($answer.html());
+      } else {
+        $answer.slideDown(200);
+        $questionBlock.siblings().find('.answer').slideUp();
+      }
+    });
+
+  // ***************************************************
+  // Делаем что-то как только элемент появился на экране
+  // ***************************************************
+
+  onScreen();
+
+  function onScreen() {
+    var thisPos, offset,
+    $window = $(window),
+    wPos = $window.scrollTop(),
+    wHeight = $window.height(),
+    startAnim = wPos + wHeight;
+    $('.on_screen:not(.animated)').each(function() {
+      var $this = $(this),
+      offset = $this.data('offset') || 0,
+      thisPos = $this.offset().top;
+      if ((!$this.hasClass('animated') && startAnim > thisPos + offset)) {
+        $this.addClass('animated').trigger('onScreen');
+      }
+    });
+  }
 
   // ****************************************************
   // Альтернатива $window.scroll. П - производительность.

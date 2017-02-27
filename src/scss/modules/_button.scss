@@ -1,0 +1,61 @@
+.button {
+  min-height: $button_height;
+  vertical-align: top;
+  padding: #{($button_height - $button_fz)/2} $button_padding_horizontal;
+  line-height: 1;
+  text-align: center;
+  border: 0;
+  color: #fff;
+  box-shadow: none;
+  background-image: linear-gradient(to right, #dd4e7d, #cf5ed6), linear-gradient(#000000, #000000);
+  // background-repeat: repeat-x;
+  // background-size: 300px 100%;
+  // background-position: 0 0;
+  display: inline-block;
+  font-size: $button_fz;
+  text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: $shadow;
+  transition: all 0.4s;
+  min-width: 12rem;
+    cursor: pointer;
+  &:hover { box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.55); }
+  &.with_icon { max-height: $button_height; }
+  &.blue {
+    background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#000000, #000000);
+  }
+  &.outlined {
+    $bd: 0.4rem;
+    background-image: none;
+    border: $bd solid #fff;
+    padding: #{($button_height - $button_fz - $bd*2)/2} $button_padding_horizontal;
+    &:hover {
+      background-color: #fff;
+      color: $pink;
+    }
+    &.blue {
+      border-color: $blue;
+      color: $text;
+      font-weight: 700;
+
+      &:hover { background-color: $blue; color: #fff; .icon { color: #fff; } }
+    }
+    &.pink {
+      border-color: $pink;
+      color: $text;
+      font-weight: 700;
+      &:hover { background-color: $pink; color: #fff; }
+    }
+  }
+  .icon {
+    font-size: 3rem;
+    float: left;
+    margin: -0.6rem 0.6rem 0 0;
+    color: #000;
+    transition: all 0.4s;
+  }
+  @media screen and (max-width: $mobile) {
+    padding-left: #{$button_padding_horizontal - 1rem};
+    padding-right: #{$button_padding_horizontal - 1rem};
+  }
+}

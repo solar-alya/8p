@@ -47,31 +47,31 @@ http://flickity.metafizzy.co
 .flickity-prev-next-button {
   position: absolute;
   top: 50%;
-  width: 44px;
-  height: 44px;
+  width: 14rem;
+  height: 14rem;
   border: none;
   border-radius: 50%;
-  background: white;
-  background: hsla(0, 0%, 100%, 0.75);
+  background: transparent;
   cursor: pointer;
+  outline: none;
+  border: none;
   /* vertically center */
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
 }
 
-.flickity-prev-next-button:hover { background: white; }
 
-.flickity-prev-next-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 5px #09F;
+.flickity-prev-next-button.previous { left: -7rem; }
+.flickity-prev-next-button.next { right: -7rem; }
+
+@media screen and (max-width: 1200px) {
+  .flickity-prev-next-button {
+    width: 8rem;
+    height: 8rem;
+  }
+  .flickity-prev-next-button.previous { left: -3rem; }
+  .flickity-prev-next-button.next { right: -3rem; }
 }
-
-.flickity-prev-next-button:active {
-  opacity: 0.6;
-}
-
-.flickity-prev-next-button.previous { left: 10px; }
-.flickity-prev-next-button.next { right: 10px; }
 /* right to left */
 .flickity-rtl .flickity-prev-next-button.previous {
   left: auto;
@@ -83,8 +83,8 @@ http://flickity.metafizzy.co
 }
 
 .flickity-prev-next-button:disabled {
-  opacity: 0.3;
   cursor: auto;
+  .arrow { fill: #f1f1f1 }
 }
 
 .flickity-prev-next-button svg {
@@ -96,7 +96,7 @@ http://flickity.metafizzy.co
 }
 
 .flickity-prev-next-button .arrow {
-  fill: #333;
+  fill: #f1f1f1;
 }
 
 /* ---- page dots ---- */
