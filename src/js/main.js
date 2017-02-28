@@ -426,7 +426,7 @@ function init() {
     wPos = $window.scrollTop(),
     wHeight = $window.height(),
     startAnim = wPos + wHeight;
-    $('.on_screen:not(.animated)').each(function() {
+    $('.on_screen').each(function() {
       var $this = $(this),
       offset = $this.data('offset') || 0,
       thisPos = $this.offset().top;

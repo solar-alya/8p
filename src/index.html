@@ -447,7 +447,7 @@
             заинтересовался и хочешь выступить на конференции?
           </div>
           <div class='dib'>
-            <a href='' class='button || outlined || pink || dialog_open' data-dialog='#dialog_sponsor'>Дай нам знать</a>
+            <a href='' class='button || outlined || pink || dialog_open' data-dialog='#dialog_speaker'>Дай нам знать</a>
           </div>
         </div>
       </section>
@@ -910,7 +910,7 @@
             хочешь помочь нам провести крутую конференцию?
           </div>
           <div class='dib'>
-            <a href='' class='button || outlined || pink'>пиши скорее</a>
+            <a href='' class='button || outlined || pink || dialog_open' data-dialog='#dialog_sponsor'>пиши скорее</a>
           </div>
         </div>
       </section>
@@ -1103,14 +1103,21 @@
             <svg class='section_contacts_icon || icon'><use xlink:href='/img/svgdefs.svg#icon_reward'></use></svg>
             <div class='section_contacts_heading || h4'>хочешь стать спонсором?</div>
             <p>Будем благодарны за поддержку!</p>
-            <a href='' class='section_contacts_button || button || outlined'>Напиши нам</a>
+            <a href='' class='section_contacts_button || button || outlined || dialog_open' data-dialog='#dialog_sponsor'>Напиши нам</a>
           </div>
           <div class='col_4 || on_screen || fade_up'>
             <svg class='section_contacts_icon || icon'><use xlink:href='/img/svgdefs.svg#icon_microphone'></use></svg>
             <div class='section_contacts_heading || h4'>хочешь стать спикером?</div>
             <p>Мы будем рады усилить нашу программу.</p>
-            <a href='' class='section_contacts_button || button || outlined'>Сообщи нам</a>
+            <a href='' class='section_contacts_button || button || outlined || dialog_open' data-dialog='#dialog_speaker'>Сообщи нам</a>
           </div>
+        </div>
+      </section>
+
+      <section class='section_look' style='background-image: url(/img/footer.jpg);'>
+        <div class='wrapper'>
+          <div class='h2 | on_screen || fade_up'>Ты влюбишься в Одессу</div>
+          <a href='' class='button || blue | on_screen || fade_up || dialog_open_youtube' data-youtube='http://www.youtube.com/embed/Apl81cIHKd8'>Посмотреть Одессу</a>
         </div>
       </section>
 
@@ -1118,11 +1125,9 @@
 
     @@include('modules/footer.html')
 
+    <!-- ******* -->
     <!-- Dialogs -->
-
-    <div id='dialog_ticket' class='dialog'>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis fugit veniam asperiores facere, voluptatem, similique, optio, quos vel dolorum tempora repudiandae in harum aliquid velit maxime hic facilis nulla dolorem.
-    </div>
+    <!-- ******* -->
 
     <div id='dialog_youtube' class='dialog'>
       <iframe src="http://www.youtube.com/embed/Apl81cIHKd8" allowfullscreen="" frameborder="0"></iframe>
@@ -1135,6 +1140,21 @@
     <div id='dialog_sponsor' class='dialog'>
       <div class='dialog_head'>
         <div class='dialog_heading'>Хочешь стать спонсором?</div>
+        <div class='dialog_close_icon || dialog_close'>
+          <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg>
+        </div>
+      </div>
+      <form class='dialog_body || form'>
+        <input type='text' name='' class='input' placeholder='Имя'>
+        <input type='email' name='' class='input' placeholder='Email'>
+        <textarea name='' class='input' placeholder='Комментарий'></textarea>
+        <button class='button'>Спросить</button>
+      </form>
+    </div>
+
+    <div id='dialog_speaker' class='dialog'>
+      <div class='dialog_head'>
+        <div class='dialog_heading'>Хочешь выступить?</div>
         <div class='dialog_close_icon || dialog_close'>
           <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg>
         </div>

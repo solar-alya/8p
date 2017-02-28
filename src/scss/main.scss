@@ -807,6 +807,7 @@ textarea.input {
   box-shadow: none;
   position: relative;
   padding: 0.4rem;
+  float: left;
   &:hover {
     z-index: 2;
   }
@@ -896,6 +897,7 @@ $youtube_thumb_margin: 4rem;
 // ******************************************
 
 .gallery_bgs {
+  .grid:first-child:not(:only-child) { margin-bottom: 0; }
   .bg {
     height: 14rem;
     cursor: pointer;
@@ -1134,4 +1136,23 @@ box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
 
 .section_contacts_button {
   margin-top: 2.5rem;
+}
+
+
+// ***********************
+// Section look
+// ***********************
+
+.section_look {
+  padding: 23rem 0;
+  color: #fff;
+  text-align: center;
+  .h2 { text-transform: initial; }
+  .button { margin-top: 2rem; }
+  @media screen and (max-width: $tablet) {
+    padding: 15rem 0;
+  }
+  @media screen and (max-width: $mobile) {
+    padding: 10rem 0;
+  }
 }

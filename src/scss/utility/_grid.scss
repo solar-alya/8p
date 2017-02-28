@@ -13,6 +13,7 @@ $grid_margin_bigger: 60px;
 .grid {
   margin-bottom: -$grid_margin;
   width: 100%;
+  display: table; 
   &>[class*='col_'] { margin-bottom: $grid_margin; }
   &.margin_bigger {
     margin-bottom: -$grid_margin_bigger;
