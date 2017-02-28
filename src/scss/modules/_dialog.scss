@@ -31,10 +31,13 @@
   margin: 0 auto;
   position: relative;
   z-index: 22;
-  overflow: auto;
   max-height: 80vh;
   display: inline-block;
   text-align: left;
+  .scrollbar {
+    overflow: auto;
+    max-height: 60vh;
+  }
 }
 
 .dialog_head {
@@ -65,16 +68,31 @@
 
 #dialog_youtube {
   padding: 0;
-  max-width: 900px;
+  max-width: 100%;
+  max-height: 100%;
+  height: calc(100vh - #{$button_height});
+  margin-top: $button_height;
   iframe {
     width: 100%;
-    height: 50rem;
-    max-height: 80vh;
+    height: calc(100vh - #{$button_height});
   }
+  .dialog_icon_close_outer { right: 0; }
 }
 
 #dialog_gallery {
   padding: 0;
   width: auto;
   img { max-height: 80vh; }
+}
+
+.dialog_icon_close_outer {
+  position: absolute;
+  top: -5rem;
+  right: -1.5rem;
+  width: 5rem;
+  height: 5rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
 }

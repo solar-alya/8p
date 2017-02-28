@@ -181,7 +181,7 @@
         </div>
       </section>
 
-      <section id='speakers' class='no_padding_bottom || section_speakers_slider'>
+      <section id='speakers' class='section_speakers_slider'>
         <div class='wrapper'>
           <div class='h1 || section_heading || on_screen || fade_up'>Спикеры</div>
           <div class='speakers_slider ||  on_screen || fade_up'>
@@ -441,7 +441,7 @@
         </div>
       </section>
 
-      <section class='padding_smaller || text_with_button'>
+      <section class='margin_smaller || text_with_button'>
         <div class='wrapper || on_screen || fade_up'>
           <div class='dib || h4 || color_pink'>
             заинтересовался и хочешь выступить на конференции?
@@ -524,7 +524,7 @@
           </div>
         </div>
       </section>
-      <section class='no_padding || section_video_comments || clearfix'>
+      <section class='section_video_comments || clearfix'>
         <div class='video_comment || dialog_open_youtube || on_screen || fade_up' data-youtube='http://www.youtube.com/embed/Apl81cIHKd8' style='background-image: url(/img/cat1.png);'>
           <div class='video_comment_content'>
             <div class='dtc'>
@@ -790,7 +790,7 @@
         </div>
       </section>
 
-      <section class='section_app' style='background-image: url(/img/section_app.jpg);'>
+      <section class='section_app || section_padding' style='background-image: url(/img/section_app.jpg);'>
         <div class='wrapper'>
           <div class='section_app_phone || on_screen || fade_up'>
             <img src='/img/section_app_phone.png'>
@@ -896,7 +896,7 @@
           <div class='logo_image || on_screen || fade_up'>
             <a href='' class='bg' style='background-image: url(/img/logo_netpeak.svg);'></a>
             <br>
-            <div class='logo_image_info'>золотой спонсор</div>
+            <div class='logo_image_info || outlined'>золотой спонсор</div>
           </div>
           <div class='logo_image || on_screen || fade_up'>
             <a href='' class='bg' style='background-image: url(/img/logo_netpeak.svg);'></a>
@@ -904,7 +904,7 @@
         </div>
       </section>
 
-      <section class='padding_smaller'>
+      <section class='margin_smaller'>
         <div class='text_with_button || on_screen || fade_up'>
           <div class='dib || h4 || color_pink'>
             хочешь помочь нам провести крутую конференцию?
@@ -1091,7 +1091,7 @@
         </div>
       </section>
 
-      <section id='contacts' class='section_contacts'>
+      <section id='contacts' class='section_contacts || section_padding || padding_smaller'>
         <div class='wrapper'>
           <div class='col_4 || on_screen || fade_up'>
             <svg class='section_contacts_icon || icon'><use xlink:href='/img/svgdefs.svg#icon_pin'></use></svg>
@@ -1117,7 +1117,7 @@
       <section class='section_look' style='background-image: url(/img/footer.jpg);'>
         <div class='wrapper'>
           <div class='h2 | on_screen || fade_up'>Ты влюбишься в Одессу</div>
-          <a href='' class='button || blue | on_screen || fade_up || dialog_open_youtube' data-youtube='http://www.youtube.com/embed/Apl81cIHKd8'>Посмотреть Одессу</a>
+          <a href='' class='button || blue | on_screen || fade_up || dialog_open_youtube' data-youtube='http://www.youtube.com/embed/Apl81cIHKd8'>Посмотреть</a>
         </div>
       </section>
 
@@ -1130,11 +1130,13 @@
     <!-- ******* -->
 
     <div id='dialog_youtube' class='dialog'>
-      <iframe src="http://www.youtube.com/embed/Apl81cIHKd8" allowfullscreen="" frameborder="0"></iframe>
+      <div class='dialog_icon_close_outer || dialog_close'><svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg></div>
+        <iframe src="" allowfullscreen="" frameborder="0"></iframe>
     </div>
 
     <div id='dialog_gallery' class='dialog'>
-      <img src=''>
+      <div class='dialog_icon_close_outer || dialog_close'><svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg></div>
+        <img src=''>
     </div>
 
     <div id='dialog_sponsor' class='dialog'>
@@ -1144,7 +1146,7 @@
           <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg>
         </div>
       </div>
-      <form class='dialog_body || form'>
+      <form class='dialog_body || form || scrollbar'>
         <input type='text' name='' class='input' placeholder='Имя'>
         <input type='email' name='' class='input' placeholder='Email'>
         <textarea name='' class='input' placeholder='Комментарий'></textarea>
@@ -1159,7 +1161,7 @@
           <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_close'></use></svg>
         </div>
       </div>
-      <form class='dialog_body || form'>
+      <form class='dialog_body || form || scrollbar'>
         <input type='text' name='' class='input' placeholder='Имя'>
         <input type='email' name='' class='input' placeholder='Email'>
         <textarea name='' class='input' placeholder='Комментарий'></textarea>

@@ -1,4 +1,6 @@
 .speakers_slider {
+  .flickity-prev-next-button.previous { left: -10rem; }
+  .flickity-prev-next-button.next { right: -10rem; }
   .slide {
     width: 100%;
     margin-right: 20px;
@@ -6,6 +8,11 @@
     @media screen and (max-width: $desc) {
       flex-direction: column-reverse;
     }
+  }
+  @media screen and (max-width: 1200px) {
+    padding: 0 2rem;
+    .flickity-prev-next-button.previous { left: -3rem; }
+    .flickity-prev-next-button.next { right: -3rem; }
   }
 }
 

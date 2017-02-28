@@ -48,8 +48,8 @@ function init() {
     adaptiveHeight: true,
     pageDots: false,
     contain: true,
-    prevNextButtons: false,
     dragThreshold: 10,
+    arrowShape: 'M0.335,38.395 L38.877,0.166 L42.222,3.346 L5.678,39.985 L42.344,76.623 L38.857,79.803 L0.335,41.574 L0.335,38.395 Z',
     // groupCells: '100%',
   });
 
@@ -324,7 +324,9 @@ function init() {
     openYoutube: function(url) {
       var $dialog = $('#dialog_youtube');
       this.open($dialog);
-      $dialog.find('iframe').attr('src', url + '?autoplay=1');
+      setTimeout(function() {
+        $dialog.find('iframe').attr('src', url + '?autoplay=1');
+      }, 300);
     },
     openZoom: function(url) {
       var $dialog = $('#dialog_gallery');
@@ -371,6 +373,11 @@ function init() {
     $(this).find('iframe').attr('src', '');
   });
 
+  // Закрытие по ESC
+  $(document).keyup(function(e) {
+  if (e.keyCode === 27) { dialog.close($('.dialog_handler')); }
+});
+
   // *****************************
   // Slider spinner
   // *****************************
@@ -380,39 +387,39 @@ function init() {
     length = $slide.length,
     tl = new TimelineMax({ repeat: -1 });
     for (var i = 0; i < length; i += 1) {
-      tl.fromTo($slide[i], 0.3, { scale: 0.2, rotation: 180, autoAlpha: 0, display: 'none' }, { scale: 1, rotation: 0, autoAlpha: 1,  display: 'block' });
-      tl.to($slide[i], 0.3, { scale: 0.2, rotation: -180, autoAlpha: 0,  display: 'none', delay: 4  });
+      tl.fromTo($slide[i], 0.5, { x: -50, autoAlpha: 0, display: 'none' }, { x: 0, autoAlpha: 1,  display: 'block', ease: Power3.easeOut });
+      tl.to($slide[i], 0.5, { x: 50, autoAlpha: 0,  display: 'none', delay: 3.5, ease: Power3.easeIn  });
     }
   });
 
-    // *****************************
-    // FAQ
-    // *****************************
+  // *****************************
+  // FAQ
+  // *****************************
 
-    // Init
+  // Init
 
-    $('.question_block:first-child').each(function() {
-      var $this = $(this);
-      $this.addClass('active');
-      $('.faq_answers').html($this.find('.answer').html());
-      if ($window.innerWidth() < 768) {
-        $this.find('.answer').show();
-      }
-    });
+  $('.question_block:first-child').each(function() {
+    var $this = $(this);
+    $this.addClass('active');
+    $('.faq_answers').html($this.find('.answer').html());
+    if ($window.innerWidth() < 768) {
+      $this.find('.answer').show();
+    }
+  });
 
-    $body.on('click', '.question', function() {
-      var $this = $(this),
-      $handler = $this.closest('.faq_handler'),
-      $questionBlock = $this.closest('.question_block'),
-      $answer = $this.next('.answer');
-      $questionBlock.addClass('active').siblings().removeClass('active');
-      if ($window.innerWidth() > 768) {
-        $handler.find('.faq_answers').html($answer.html());
-      } else {
-        $answer.slideDown(200);
-        $questionBlock.siblings().find('.answer').slideUp();
-      }
-    });
+  $body.on('click', '.question', function() {
+    var $this = $(this),
+    $handler = $this.closest('.faq_handler'),
+    $questionBlock = $this.closest('.question_block'),
+    $answer = $this.next('.answer');
+    $questionBlock.addClass('active').siblings().removeClass('active');
+    if ($window.innerWidth() > 768) {
+      $handler.find('.faq_answers').html($answer.html());
+    } else {
+      $answer.slideDown(200);
+      $questionBlock.siblings().find('.answer').slideUp();
+    }
+  });
 
   // ***************************************************
   // Делаем что-то как только элемент появился на экране
@@ -440,18 +447,20 @@ function init() {
   // Альтернатива $window.scroll. П - производительность.
   // ****************************************************
 
-  windowScroll();
+  windowScroll(function() {
+    // callback();
+    onScreen();
+    setScrollTo();
+    setHeaderButton();
+    console.log('scroll');
+  });
 
-  function windowScroll() {
+  function windowScroll(callback) {
     var didScroll = false;
     $window.on('scroll', function () { didScroll = true; });
     setInterval(function () {
       if (didScroll) {
-        // Функции
-        onScreen();
-        console.log('SCROLL');
-        setScrollTo();
-        setHeaderButton();
+        callback();
         didScroll = false;
       }
     }, 80);

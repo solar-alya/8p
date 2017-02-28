@@ -1,7 +1,7 @@
 .footer {
   color: #fff;
   background-color: #1d1d1d;
-  padding: $section_padding 0;
+  padding: #{$section_padding / 2} 0;
   position: relative;
   &:after {
     content: '';
@@ -72,8 +72,9 @@
 }
 
 .footer_org {
-  img {
-    max-width: 13rem;
+  img { max-width: 13rem; }
+  a {
+    display: inline-block;
     &:not(:last-child) { margin-bottom: 1.1rem; }
   }
 }
