@@ -1049,6 +1049,9 @@ $youtube_thumb_margin: 4rem;
       font-size: 1.4rem;
       color: $blue;
       transition: all .4s;
+      @media screen and (max-width: $tablet) {
+        display: none;
+      }
     }
   }
   .answer { display: none; }
