@@ -210,9 +210,12 @@ function init() {
   $('body').on('click', '.scroll_to', function(event) {
     var $this = $(this),
     $target = $($this.attr('href')),
-    dist = $target.offset().top - $('.header').innerHeight() + 1;
-    event.preventDefault();
-    tm.to(window, 0.55, { scrollTo: dist, ease: Power4.easeInOut });
+    dist;
+    if ($target.length) {
+      dist = $target.offset().top - $('.header').innerHeight() + 1;
+      event.preventDefault();
+      tm.to(window, 0.55, { scrollTo: dist, ease: Power4.easeInOut });
+    }
   });
 
   // Выставляем активные классы на менюшки в зависимости от секции
@@ -222,7 +225,7 @@ function init() {
       var $this = $(this),
       $target = $($this.attr('href')),
       wPos = $window.scrollTop();
-      // if ($target.length === 0) { return false; }
+      if ($target.length === 0) { return; }
       if (wPos >= $target.offset().top - $('.header').innerHeight()) {
         $('.scroll_to').removeClass('active');
         $this.addClass('active');
@@ -444,26 +447,44 @@ function init() {
   }
 
   // ****************************************************
+  // Функции на скролл
+  // ****************************************************
+
+  $window.on('scroll', function () {
+      onScreen();
+      setScrollTo();
+      setHeaderButton();
+  });
+
+  // Был баг. Решить не смог. На всякий оставлю
+  // ****************************************************
   // Альтернатива $window.scroll. П - производительность.
   // ****************************************************
 
-  windowScroll(function() {
-    // callback();
-    onScreen();
-    setScrollTo();
-    setHeaderButton();
-    console.log('scroll');
-  });
+  // windowScroll(function() {
+  //   // callback();
+  //   onScreen();
+  //   setScrollTo();
+  //   setHeaderButton();
+  // });
+  //
+  // function windowScroll(callback) {
+  //   var didScroll = false;
+  //   $window.on('scroll', function () { didScroll = true; });
+  //   setInterval(function () {
+  //     if (didScroll) {
+  //       callback();
+  //       didScroll = false;
+  //     }
+  //   }, 80);
+  // }
+  //
+  // windowScroll(function() {
+  //   // callback();
+  //   onScreen();
+  //   setScrollTo();
+  //   setHeaderButton();
+  // });
 
-  function windowScroll(callback) {
-    var didScroll = false;
-    $window.on('scroll', function () { didScroll = true; });
-    setInterval(function () {
-      if (didScroll) {
-        callback();
-        didScroll = false;
-      }
-    }, 80);
-  }
 
 }

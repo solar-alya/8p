@@ -6,22 +6,7 @@
 <body>
   @@include('modules/header.html')
 
-  <!-- Fixed socials -->
-
-  <div class='fixed_socials || on_screen'>
-    <a href='' class='fixed_social || bg_facebook'>
-      <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_facebook'></use></svg>
-    </a>
-    <a href='' class='fixed_social || bg_twitter'>
-      <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_twitter'></use></svg>
-    </a>
-    <a href='' class='fixed_social || bg_instagram'>
-      <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_instagram'></use></svg>
-    </a>
-    <a href='' class='fixed_social || bg_youtube'>
-      <svg class='icon'><use xlink:href='/img/svgdefs.svg#icon_youtube'></use></svg>
-    </a>
-  </div>
+  @@include('modules/fixed_socials.html')
 
   <main class='main'>
 
@@ -662,7 +647,7 @@
       <section>
         <div class='wrapper'>
           <div class='section_tabs || on_screen || fade_up'>
-            <div class='tabs_choose'>
+            <div class='tabs_choose || tabs_choose_buttons'>
               <div class='tab_choose || button || blue' data-tab='#tab_video'><span>Видео</span></div>
               <div class='tab_choose || button || blue' data-tab='#tab_photo'><span>Фото</span></div>
             </div>

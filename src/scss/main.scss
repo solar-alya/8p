@@ -13,6 +13,8 @@
 @import 'modules/_dropdown.scss';
 @import 'modules/_dialog.scss';
 
+@import 'pages/_program.scss';
+
 
 
 @font-face {
@@ -215,7 +217,23 @@ section {
       clear: both;
     }
   }
+&.dt {
+  width: 100%;
+  .dtc:last-child { text-align: right; }
+}
+}
 
+.link_text {
+  color: $blue;
+  transition: all .4s;
+  // border-bottom: 1px solid transparent;
+  &:hover {
+    // border-bottom: 1px solid $blue;
+    color: $pink;
+  }
+  .icon {
+    margin-right: 0.5rem;
+  }
 }
 
 ul.with_checks {
@@ -542,6 +560,33 @@ textarea.input {
 .card {
   background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#000000, #000000);
   padding: 0.4rem;
+  position: relative;
+  &.card_toggle {
+    cursor: pointer;
+    &:hover:after { opacity: 1; }
+    .card_head {
+      padding: 0 1rem 0.4rem 1rem;
+      height: 5rem;
+    }
+    .card_body {
+      padding: 1rem;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, #dd4e7d, #cf5ed6), linear-gradient(#000000, #000000);
+      transition: all .4s;
+      opacity: 0;
+    }
+  }
+  &.blue { background-image: linear-gradient(to right, #3f8abf, #3f99bf 50%, #5d9fb8), linear-gradient(#000000, #000000); }
+  &.green { background-image: linear-gradient(to right, #31af66, #4fbd68 50%, #1acb60), linear-gradient(#000000, #000000); }
+  &.orange { background-image: linear-gradient(to right, #d5aa13, #e2ba2e 50%, #dbbb4c), linear-gradient(#000000, #000000); }
+  &.red { background-image: linear-gradient(to right, #c8532f, #c83d2f 50%, #d55c46), linear-gradient(#000000, #000000); }
 }
 
 .card_head {
@@ -549,19 +594,68 @@ textarea.input {
   width: 100%;
   color: #fff;
   height: 8rem;
-  padding: 0 3.5rem;
+  padding: 0 3.5rem 0.4rem;
+  position: relative;
+  z-index: 2;
   .dtc { vertical-align: middle; }
 }
 
 .card_body {
   background-color: #fff;
   padding: 1.5rem 1.8rem;
+  position: relative;
+  z-index: 2;
+}
+
+.cards_hidden {
+  .card {
+    display: none;
+  }
+  .card_body {
+    display: table;
+    width: 100%;
+  }
+  // .tab_choose {
+  //   display: block;
+  //   padding: 0.5rem 1rem;
+  //   text-transform: uppercase;
+  //   font-weight: 500;
+  //   margin-bottom: 0.5rem;
+  //   cursor: pointer;
+  //   // @extend .question_block
+  // }
 }
 
 .card_body_heading {
   font-weight: 500;
   text-transform: uppercase;
   &:not(:first-child) { margin-top: 2rem; }
+}
+
+.card_hidden_photo {
+  width: 22.3%;
+  padding-right: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  display: table-cell;
+  vertical-align: top;
+}
+
+.card_hidden_content {
+  display: table-cell;
+  vertical-align: top;
+  border-left: 1px solid #f1f1f1;
+  padding: 1rem 2rem;
+  p {
+    &:not(:last-child) { margin-bottom: 1rem; }
+  }
+  .h4 { margin-bottom: 1rem; }
+}
+
+.card_hidden_tabs {
+  display: table-cell;
+  vertical-align: top;
 }
 
 // ***************
@@ -810,11 +904,13 @@ section.price_after_section {
 }
 
 .tabs_choose {
-  box-shadow: $shadow;
-  display: inline-block;
+  &.tabs_choose_buttons {
+    box-shadow: $shadow;
+    display: inline-block;
+  }
 }
 
-.tab_choose {
+.tab_choose.button {
   box-shadow: none;
   position: relative;
   padding: 0.4rem;
@@ -1174,5 +1270,25 @@ box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
   }
   @media screen and (max-width: $mobile) {
     padding: 10rem 0;
+  }
+}
+
+// **************************
+// Bread crumbs
+// **************************
+
+.bread {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  a {
+    &:last-child {
+      color: #ccc;
+      pointer-events: none
+    }
+  }
+  .icon {
+    color: #ccc;
+    font-size: 1.4rem;
+    margin: 0 0.5rem;
   }
 }

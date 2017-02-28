@@ -1,0 +1,19 @@
+.program_icons {
+  text-align: center;
+  img {
+    margin-bottom: 1rem;
+  }
+  .big {
+    line-height: 1.2;
+  }
+}
+
+.cell_block {
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.cell_block_heading {
+  padding: 1rem;
+  border-bottom: 1px solid $blue;
+}
