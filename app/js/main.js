@@ -488,11 +488,12 @@ function init() {
     $window.on('scroll', function () { didScroll = true; });
     setInterval(function () {
       if (didScroll) {
-        didScroll = false;
         // Функции
         onScreen();
+        console.log('SCROLL');
         setScrollTo();
         setHeaderButton();
+        didScroll = false;
       }
     }, 80);
   }
