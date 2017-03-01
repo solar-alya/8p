@@ -440,7 +440,10 @@ function init() {
   // Карточки одинакового размера
   // ************************************************
 
-  cardsAdaptive();
+  setTimeout(function() {
+    cardsAdaptive();
+  }, 200);
+
 
   function cardsAdaptive() {
     $('.cards_adaptive').each(function() {
