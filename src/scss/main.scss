@@ -206,6 +206,19 @@ section {
     vertical-align: middle;
     margin-left: 3rem;
   }
+  &.dt {
+    width: 100%;
+    .dtc:last-child { text-align: right; }
+  }
+  @media screen and (max-width: $desc) {
+    &.dt .dtc {
+      display: block;
+      &:last-child {
+        margin-top: 1rem;
+        text-align: left;
+      }
+    }
+  }
   @media screen and (max-width: $mobile) {
     margin-bottom: #{$section_padding - 2rem};
     .dib {
@@ -219,10 +232,6 @@ section {
       clear: both;
     }
   }
-&.dt {
-  width: 100%;
-  .dtc:last-child { text-align: right; }
-}
 }
 
 .link_text {
@@ -363,7 +372,7 @@ ul.with_checks {
 .form {
   .input {
     &:not(:last-child) { margin-bottom: 1rem; }
-   }
+  }
 }
 
 .input {
@@ -607,11 +616,13 @@ textarea.input {
 .cards_toggle {
   .grid {
     display: flex;
-
+  @media screen and (max-width: $desc) {
+    flex-wrap: wrap;
+  }
   }
   .card {
     display: flex;
-flex-direction: column;
+    flex-direction: column;
   }
   .card_body { flex: 1 }
 }
@@ -666,6 +677,11 @@ flex-direction: column;
   display: table-cell;
   vertical-align: top;
   transition: all .4s;
+  @media screen and (max-width: $tablet) {
+    width: 100%;
+    padding-bottom: 2rem;
+    display: block;
+  }
 }
 
 .card_hidden_photo_portret {
@@ -683,6 +699,10 @@ flex-direction: column;
     color: #fff;
   }
   .big { line-height: 1.1; margin-bottom: 0.5rem; }
+  @media screen and (max-width: $tablet) {
+    padding: 12rem 0;
+    width: 20rem;
+  }
 }
 
 .card_hidden_content {
@@ -699,11 +719,23 @@ flex-direction: column;
     width: 100%;
     height: 32.5rem;
   }
+  @media screen and (max-width: $tablet) {
+    display: block;
+    width: 100%;
+    padding: 2rem 0 0 0;
+    border: 0;
+    .tabs_choose.tabs_choose_buttons {
+      box-shadow: none;
+      .tab_choose {
+        width: 100%;
+      }
+    }
+  }
 }
 
 .card_hidden_content_scroll {
   overflow: auto;
-    max-height: 32.5rem;
+  max-height: 32.5rem;
 }
 
 .card_hidden_tabs {
@@ -1285,7 +1317,7 @@ $youtube_thumb_margin: 4rem;
 .section_contacts {
   text-align: center;
   background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca);
-box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
 }
 
 .section_contacts_icon {
@@ -1356,5 +1388,5 @@ box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
   padding: 0.3rem 0.5rem;
   color: #fff;
   margin: 0 0.2rem;
-    background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca);
+  background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca);
 }

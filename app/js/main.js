@@ -475,6 +475,11 @@ function init() {
     index = $this.index(),
     $target = $handler.find('.cards_hidden .card').eq(index);
     $target.slideToggle(200).siblings().slideUp(200);
+    setTimeout(function() {
+      if ($window.innerWidth() < 1000 && $target.is(":visible")) {
+        tm.to(window, 0.6, { scrollTo: { y: $target.offset().top - $header.innerHeight(), ease: Power4.easeInOut } });
+      }
+    }, 210);
   });
 
   // ***************************************************
@@ -504,7 +509,7 @@ function init() {
   // ****************************************************
 
   $window.on('resize', function () {
-    cardsAdaptive();
+
   });
 
 
