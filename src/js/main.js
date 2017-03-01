@@ -436,28 +436,6 @@ function init() {
     $target.slideToggle(200).siblings().slideUp(200);
   });
 
-  // ************************************************
-  // Карточки одинакового размера
-  // ************************************************
-
-  setTimeout(function() {
-    cardsAdaptive();
-  }, 200);
-
-
-  function cardsAdaptive() {
-    $('.cards_adaptive').each(function() {
-      var $this = $(this),
-      $cards = $this.find('.grid .card_body'),
-      heights = [],
-      maxHeight = 0;
-      $cards.css('min-height', 'auto');
-      $cards.each(function() { heights.push($(this).innerHeight()); });
-      maxHeight =   Math.max.apply(null, heights);
-      $cards.css('min-height', maxHeight+'px');
-    });
-  }
-
   // ***************************************************
   // Делаем что-то как только элемент появился на экране
   // ***************************************************

@@ -604,6 +604,18 @@ textarea.input {
   &.red { background-image: linear-gradient(to right, #c8532f, #c83d2f 50%, #d55c46), linear-gradient(#000000, #000000); }
 }
 
+.cards_toggle {
+  .grid {
+    display: flex;
+
+  }
+  .card {
+    display: flex;
+flex-direction: column;
+  }
+  .card_body { flex: 1 }
+}
+
 .card_head {
   display: table;
   width: 100%;
@@ -1344,7 +1356,5 @@ box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
   padding: 0.3rem 0.5rem;
   color: #fff;
   margin: 0 0.2rem;
-  &:not([class*='grad']) {
     background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca);
-  }
 }
