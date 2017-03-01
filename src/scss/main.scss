@@ -116,6 +116,8 @@ main {
   padding-top: $button_height;
 }
 
+.small { font-size: 1.6rem; }
+
 h1, .h1 {
   font-size: 6rem;
   line-height: 7.5rem;
@@ -351,6 +353,11 @@ ul.with_checks {
 .bg_instagram  { background-color: $instagram; }
 .bg_youtube    { background-color: $youtube; }
 
+.grad_blue { background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca); }
+.grad_green { background-image: linear-gradient(to right, #31af66, #4fbd68 50%, #1acb60), linear-gradient(#000000, #000000); }
+.grad_orange { background-image: linear-gradient(to right, #d5aa13, #e2ba2e 50%, #dbbb4c), linear-gradient(#000000, #000000); }
+.grad_red { background-image: linear-gradient(to right, #c8532f, #c83d2f 50%, #d55c46), linear-gradient(#000000, #000000); }
+
 // Form and inputs
 
 .form {
@@ -563,13 +570,8 @@ textarea.input {
   position: relative;
   &.card_toggle {
     cursor: pointer;
-    &:hover:after { opacity: 1; }
-    .card_head {
-      padding: 0 1rem 0.4rem 1rem;
-      height: 5rem;
-    }
-    .card_body {
-      padding: 1rem;
+    &:hover {
+      &:after { opacity: 1; }
     }
     &:after {
       content: '';
@@ -582,7 +584,20 @@ textarea.input {
       transition: all .4s;
       opacity: 0;
     }
+    .card_head {
+      padding: 0 1rem 0.4rem 1rem;
+      height: 5rem;
+      .big { font-size: 2rem; line-height: 1.1; }
+    }
+    .card_body {
+      padding: 1rem;
+    }
+
+    .card_toggle_image {
+      transition: all .4s;
+    }
   }
+  .tags { margin-top: 1.5rem; }
   &.blue { background-image: linear-gradient(to right, #3f8abf, #3f99bf 50%, #5d9fb8), linear-gradient(#000000, #000000); }
   &.green { background-image: linear-gradient(to right, #31af66, #4fbd68 50%, #1acb60), linear-gradient(#000000, #000000); }
   &.orange { background-image: linear-gradient(to right, #d5aa13, #e2ba2e 50%, #dbbb4c), linear-gradient(#000000, #000000); }
@@ -605,9 +620,16 @@ textarea.input {
   padding: 1.5rem 1.8rem;
   position: relative;
   z-index: 2;
+  hr {
+    border: 0;
+    border-top: 1px solid #f1f1f1;
+    max-width: 100px;
+    margin: 1rem auto;
+  }
 }
 
 .cards_hidden {
+  margin-bottom: 2rem;
   .card {
     display: none;
   }
@@ -615,15 +637,6 @@ textarea.input {
     display: table;
     width: 100%;
   }
-  // .tab_choose {
-  //   display: block;
-  //   padding: 0.5rem 1rem;
-  //   text-transform: uppercase;
-  //   font-weight: 500;
-  //   margin-bottom: 0.5rem;
-  //   cursor: pointer;
-  //   // @extend .question_block
-  // }
 }
 
 .card_body_heading {
@@ -640,17 +653,45 @@ textarea.input {
   text-align: center;
   display: table-cell;
   vertical-align: top;
+  transition: all .4s;
+}
+
+.card_hidden_photo_portret {
+  position: relative;
+  background-position: center;
+  background-size: cover;
+  padding: 20rem 0;
+  .caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: rgba(#000, 0.25);
+    color: #fff;
+  }
+  .big { line-height: 1.1; margin-bottom: 0.5rem; }
 }
 
 .card_hidden_content {
   display: table-cell;
   vertical-align: top;
   border-left: 1px solid #f1f1f1;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 0;
   p {
     &:not(:last-child) { margin-bottom: 1rem; }
   }
   .h4 { margin-bottom: 1rem; }
+  .tabs_choose { margin-bottom: 1.5rem; }
+  iframe {
+    width: 100%;
+    height: 31.6rem;
+  }
+}
+
+.card_hidden_content_scroll {
+  overflow: auto;
+    max-height: 31.6rem;
 }
 
 .card_hidden_tabs {
@@ -1290,5 +1331,20 @@ box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.35);
     color: #ccc;
     font-size: 1.4rem;
     margin: 0 0.5rem;
+  }
+}
+
+// ********************
+// Tags
+// ********************
+
+.tag {
+  display: inline-block;
+  font-size: 1.5rem;
+  padding: 0.3rem 0.5rem;
+  color: #fff;
+  margin: 0 0.2rem;
+  &:not([class*='grad']) {
+    background-image: linear-gradient(to right, #4eb7dd, #10c9c7 50%, #15bd9b), linear-gradient(#0dd1ca, #0dd1ca);
   }
 }

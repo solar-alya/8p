@@ -419,8 +419,8 @@ function init() {
 
   // Закрытие по ESC
   $(document).keyup(function(e) {
-  if (e.keyCode === 27) { dialog.close($('.dialog_handler')); }
-});
+    if (e.keyCode === 27) { dialog.close($('.dialog_handler')); }
+  });
 
   // *****************************
   // Slider spinner
@@ -465,6 +465,37 @@ function init() {
     }
   });
 
+  // ************************************************
+  // Разворачивание карточек (Страница программы)
+  // ************************************************
+
+  $body.on('click', '.card_toggle', function() {
+    var $this = $(this),
+    $handler = $this.closest('.cards_toggle'),
+    index = $this.index(),
+    $target = $handler.find('.cards_hidden .card').eq(index);
+    $target.slideToggle(200).siblings().slideUp(200);
+  });
+
+  // ************************************************
+  // Карточки одинакового размера
+  // ************************************************
+
+  cardsAdaptive();
+
+  function cardsAdaptive() {
+    $('.cards_adaptive').each(function() {
+      var $this = $(this),
+      $cards = $this.find('.grid .card_body'),
+      heights = [],
+      maxHeight = 0;
+      $cards.css('height', 'auto');
+      $cards.each(function() { heights.push($(this).innerHeight()); });
+      maxHeight =   Math.max.apply(null, heights);
+      $cards.css('height', maxHeight+'px');
+    });
+  }
+
   // ***************************************************
   // Делаем что-то как только элемент появился на экране
   // ***************************************************
@@ -488,13 +519,22 @@ function init() {
   }
 
   // ****************************************************
+  // Функции на ресайз
+  // ****************************************************
+
+  $window.on('resize', function () {
+    cardsAdaptive();
+  });
+
+
+  // ****************************************************
   // Функции на скролл
   // ****************************************************
 
   $window.on('scroll', function () {
-      onScreen();
-      setScrollTo();
-      setHeaderButton();
+    onScreen();
+    setScrollTo();
+    setHeaderButton();
   });
 
   // Был баг. Решить не смог. На всякий оставлю
