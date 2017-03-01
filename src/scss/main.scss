@@ -677,7 +677,7 @@ textarea.input {
   display: table-cell;
   vertical-align: top;
   border-left: 1px solid #f1f1f1;
-  padding: 1rem 2rem 0;
+  padding-left: 2rem;
   p {
     &:not(:last-child) { margin-bottom: 1rem; }
   }
@@ -685,13 +685,13 @@ textarea.input {
   .tabs_choose { margin-bottom: 1.5rem; }
   iframe {
     width: 100%;
-    height: 31.6rem;
+    height: 32.5rem;
   }
 }
 
 .card_hidden_content_scroll {
   overflow: auto;
-    max-height: 31.6rem;
+    max-height: 32.5rem;
 }
 
 .card_hidden_tabs {

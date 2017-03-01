@@ -448,10 +448,10 @@ function init() {
       $cards = $this.find('.grid .card_body'),
       heights = [],
       maxHeight = 0;
-      $cards.css('height', 'auto');
+      $cards.css('min-height', 'auto');
       $cards.each(function() { heights.push($(this).innerHeight()); });
       maxHeight =   Math.max.apply(null, heights);
-      $cards.css('height', maxHeight+'px');
+      $cards.css('min-height', maxHeight+'px');
     });
   }
 

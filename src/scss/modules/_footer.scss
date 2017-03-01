@@ -75,6 +75,8 @@
   img { max-width: 13rem; }
   a {
     display: inline-block;
+    transition: all .4s;
+    &:hover { opacity: 0.5; }
     &:not(:last-child) { margin-bottom: 1.1rem; }
   }
 }
