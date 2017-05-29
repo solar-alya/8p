@@ -27,7 +27,7 @@ $grid_margin_bigger: 60px;
 }
 // 5 in a row
 .col_2_4 {
-  width: calc(#{90% / $number_of_columns * 2.4} - #{$grid_margin/5});
+  width: calc(#{100% / $number_of_columns * 2.4} - #{$grid_margin/5});
   &:nth-child(5n+0) { margin-right: 0; }
 }
 .col_3 {
